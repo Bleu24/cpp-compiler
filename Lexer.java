@@ -20,7 +20,14 @@ public class Lexer {
                     sb.append(code.charAt(i));
                     i++;
                 }
-                tokens.add(new Token("IDENTIFIER", sb.toString()));
+                String identifier = sb.toString();
+                if (identifier.equals("int") || identifier.equals("float") || 
+                    identifier.equals("char") || identifier.equals("if") ||
+                    identifier.equals("else") || identifier.equals("while")) {
+                    tokens.add(new Token("KEYWORD", identifier));
+                } else {
+                    tokens.add(new Token("IDENTIFIER", identifier));
+                }
             } else if (Character.isDigit(c)) {
                 StringBuilder sb = new StringBuilder();
                 while (i < code.length() && Character.isDigit(code.charAt(i))) {
@@ -29,6 +36,12 @@ public class Lexer {
                 }
                 tokens.add(new Token("NUMBER", sb.toString()));
             } else if (c == '+') {
+                tokens.add(new Token("PLUS", "+"));
+                i++;
+            } else if (c == '=') {
+                tokens.add(new Token("ASSIGN", "="));
+                i++;
+            } else if (c == '-') {
                 tokens.add(new Token("PLUS", "+"));
                 i++;
             } else if (c == '-') {

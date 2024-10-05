@@ -10,9 +10,9 @@ public class Parser {
 
         // Example: Parsing a simple expression like "1 + 2"
         if (tokens.size() >= 3 &&
-                tokens.get(0).getType() == Lexer.TokenType.NUMBER &&
-                tokens.get(1).getType() == Lexer.TokenType.PLUS &&
-                tokens.get(2).getType() == Lexer.TokenType.NUMBER) {
+                tokens.get(0).getType().equals("NUMBER") &&
+                tokens.get(1).getType().equals("PLUS") &&
+                tokens.get(2).getType().equals("NUMBER")) {
             int num1 = Integer.parseInt(tokens.get(0).getValue());
             int num2 = Integer.parseInt(tokens.get(2).getValue());
             int result = num1 + num2;
@@ -20,7 +20,6 @@ public class Parser {
         } else {
             System.out.println("Invalid expression");
         }
-        
 
     }
 }
